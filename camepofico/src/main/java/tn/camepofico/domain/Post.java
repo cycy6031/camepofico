@@ -10,13 +10,13 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post {
-	private long psSeq;
-	private String psSubject;
-	private String psContent;
-	private Date psRdate;
-	private Date psUdate;
+	private long ps_seq;
+	private String ps_subject;
+	private String ps_content;
+	private Date ps_rdate;
+	private Date ps_udate;
 	private Member member;
 	private Pocategory pocategory;
-	private int fileCount;
-	private int commentCount;
+	private int file_count;
+	private int comment_count;
 }
