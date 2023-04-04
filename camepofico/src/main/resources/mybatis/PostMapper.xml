@@ -3,14 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tn.camepofico.mapper.PostMapper">
+    <resultMap id="memberRM" type="Member">
+        <id property="mb_seq" column="MB_SEQ"/>
+    </resultMap>
     <resultMap id="post" type="Post">
-        <id property="psSeq" column="PS_SEQ"/>
-        <id property="psSubject" column="PS_SUBJECT"/>
-        <id property="psContent" column="PS_CONTENT"/>
-        <id property="psRdate" column="PS_RDATE"/>
-        <id property="psUdate" column="PS_UDATE"/>
-        <id property="fileCount" column="FILE_COUNT"/>
-        <id property="commentCount" column="COMMENT_COUNT"/>
+        <id property="ps_seq" column="PS_SEQ"/>
+        <id property="ps_subject" column="PS_SUBJECT"/>
+        <id property="ps_content" column="PS_CONTENT"/>
+        <id property="ps_rdate" column="PS_RDATE"/>
+        <id property="ps_udate" column="PS_UDATE"/>
+        <id property="file_count" column="FILE_COUNT"/>
+        <id property="comment_count" column="COMMENT_COUNT"/>
+        <collection property="member" resultMap="memberRM"/>
     </resultMap>
     <select id="listJson" resultMap="post">
         select * from POST
