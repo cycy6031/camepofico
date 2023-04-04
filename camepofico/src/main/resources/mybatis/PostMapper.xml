@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tn.camepofico.mapper.PostMapper">
+    <resultMap id="post" type="Post">
+        <id property="psSeq" column="PS_SEQ"/>
+        <id property="psSubject" column="PS_SUBJECT"/>
+        <id property="psContent" column="PS_CONTENT"/>
+        <id property="psRdate" column="PS_RDATE"/>
+        <id property="psUdate" column="PS_UDATE"/>
+        <id property="fileCount" column="FILE_COUNT"/>
+        <id property="commentCount" column="COMMENT_COUNT"/>
+    </resultMap>
+    <select id="listJson" resultMap="post">
+        select * from POST
+    </select>
+</mapper>
