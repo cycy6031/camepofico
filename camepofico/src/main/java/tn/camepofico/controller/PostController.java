@@ -19,6 +19,7 @@ public class PostController {
 	@GetMapping("listJson.do")
 	@ResponseBody
 	public List<Post> listJson(){
+		System.out.println("1111111111");
 		return postService.listJsonS();
 	}
 }
