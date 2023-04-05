@@ -110,7 +110,7 @@
 			</tr>
 		</table>
 	</form>
-	<form name="f" th:if="${member}" th:action="@{update}" method="post">
+	<form name="f" th:if="${member}" th:action="@{update?(mb_seq=${member.mb_seq})}" method="post">
 		<table border="1" width="300" height="200">
 			<tr>
 				<td width="30%" colspan="2" align="center"><h2>회원정보수정</h2></td>
@@ -121,7 +121,7 @@
 			</tr>
 			<tr>
 				<th width="30%">이메일</th>
-				<td><input name="mb_email" size="20" th:value=${member.mb_email} align="center" onkeydown="enterCheck(this)" disabled></td>
+				<td><input name="mb_email" size="20" th:value=${member.mb_email} align="center" onkeydown="enterCheck(this)"></td>
 			</tr>
 			<tr>
 				<th width="30%">비밀번호</th>

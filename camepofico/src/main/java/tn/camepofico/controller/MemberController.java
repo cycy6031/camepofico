@@ -33,7 +33,12 @@ public class MemberController {
     }
 
     @PostMapping("update")
-    public String updateOk(Member member){
+    public String updateOk(Long mb_seq, Member member){
+        System.out.println(mb_seq);
+        member.setMb_seq(mb_seq);
+        System.out.println(member.getMb_email());
+        System.out.println(member.getMb_password());
+        System.out.println(member.getMb_name());
         memberService.update(member);
         return "list";
     }
