@@ -27,17 +27,21 @@ public class LoginController {
 	}
 	@PostMapping("login")
 	public void login_Ok(Member member, HttpServletResponse response, HttpSession session) throws IOException {
-	    Member loginMember = loginService.findByEmailS(member.getMb_email());
-		String email = loginMember.getMb_email();
-		String pwd = loginMember.getMb_password();
-
-		if(loginMember == null){
-			ScriptUtil.alertAndBackPage(response, "이메일이 존재하지 않습니다");
-		}else if(!pwd.equals(member.getMb_password())){
-			ScriptUtil.alertAndBackPage(response, "비밀번호가 틀렷습니다");
-		}else {
-			session.setAttribute("loginMember",loginMember);
-			ScriptUtil.alertAndMovePage(response, "로그인 완료", "/");
+		String checkEmail = member.getMb_email();
+		String checkPwd = member.getMb_email();
+		if(checkEmail == null){
+			ScriptUtil.alertAndBackPage(response, "이메일이 존재하지 않습니다.");
+		}else if(checkPwd == null){
+			ScriptUtil.alertAndBackPage(response, "비밀번호 입력에 문제가 발생하였습니다.");
+		}else{
+			Member loginMember = loginService.findByEmailS(member.getMb_email());
+			String memberPwd = loginMember.getMb_password();
+			if(!checkPwd.equals(memberPwd)) {
+				ScriptUtil.alertAndBackPage(response, "비밀번호가 틀렷습니다");
+			}else {
+				session.setAttribute("loginMember",loginMember);
+				ScriptUtil.alertAndMovePage(response, "로그인 완료", "/");
+			}
 		}
 	}
 	@GetMapping("logout")
