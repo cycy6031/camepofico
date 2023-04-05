@@ -22,3 +22,4 @@ public class PostController {
 		return postService.listJsonS();
 	}
 }
+
