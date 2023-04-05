@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tn.camepofico.mapper.MemberMapper">
+    <resultMap id="member" type="Member">
+        <id property="mb_seq" column="MB_SEQ"/>
+        <id property="mb_name" column="MB_NAME"/>
+        <id property="mb_email" column="MB_EMAIL"/>
+        <id property="mb_password" column="MB_PASSWORD"/>
+        <id property="mb_rdate" column="MB_RDATE"/>
+        <id property="mb_udate" column="MB_UDATE"/>
+    </resultMap>
+    <insert id="insert" parameterType="Member">
+        <selectKey resultType="long" keyProperty="mb_seq" order="BEFORE">
+            select member_seq.nextval from dual
+        </selectKey>
+        insert into MEMBER values(#{mb_seq},#{mb_name}, #{mb_email}, #{mb_password}, SYSDATE, SYSDATE)
+    </insert>
+    <select id="list" resultMap="member">
+        select * from MEMBER
+    </select>
+    <select id="findBySeq" resultType="Member" parameterType="Long">
+        select * from MEMBER where MB_SEQ=#{mb_seq}
+    </select>
+    <update id="update" parameterType="Member">
+        update MEMBER set MB_NAME=#{mb_name}, MB_PASSWORD=#{mb_password}, MB_UDATE=SYSDATE where MB_SEQ=mb_seq
+    </update>
+</mapper>
