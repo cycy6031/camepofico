@@ -83,12 +83,12 @@
 <body onload="document.f.name.focus()">
 <center>
 	<h1>
-		보미닷컴 회원가입
+		보미닷컴
 	</h1>
 	<form name="f" th:unless="${member}" th:action="@{join}" method="post">
 		<table border="1" width="300" height="200">
 			<tr>
-				<td width="30%" colspan="2" align="center"><h2>입력폼</h2></td>
+				<td width="30%" colspan="2" align="center"><h2>회원가입</h2></td>
 			</tr>
 			<tr>
 				<th width="30%">이름</th>
@@ -110,7 +110,7 @@
 			</tr>
 		</table>
 	</form>
-	<form name="f" th:if="${member}" th:action="@{update?(mb_seq=${member.mb_seq})}" method="post">
+	<form name="f" th:if="${member}" th:action="@{|update?mb_seq=${member.mb_seq}|}" method="post">
 		<table border="1" width="300" height="200">
 			<tr>
 				<td width="30%" colspan="2" align="center"><h2>회원정보수정</h2></td>

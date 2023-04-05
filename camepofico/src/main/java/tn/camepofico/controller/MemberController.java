@@ -34,13 +34,9 @@ public class MemberController {
 
     @PostMapping("update")
     public String updateOk(Long mb_seq, Member member){
-        System.out.println(mb_seq);
         member.setMb_seq(mb_seq);
-        System.out.println(member.getMb_email());
-        System.out.println(member.getMb_password());
-        System.out.println(member.getMb_name());
         memberService.update(member);
-        return "list";
+        return "redirect:list";
     }
 
     @GetMapping("update")
@@ -50,8 +46,11 @@ public class MemberController {
         model.addAttribute("member", member);
         return "join";
     }
+
     @GetMapping("delete")
     public String delete(Long mb_seq){
-        return "list";
+        System.out.println("seq: " + mb_seq);
+        memberService.delete(mb_seq);
+        return "redirect:list";
     }
 }
