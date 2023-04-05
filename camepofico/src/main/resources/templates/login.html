@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>Title</title>
+		<style>
+			table, th, td {
+			   border: 1px solid black;
+			   border-collapse: collapse;
+			}
+			th, td {
+			   padding: 5px;
+			}
+			a { text-decoration:none }
+		</style>
+		<script src="/js/trim.js"></script>
+		<script language="javascript"> 
+		    function check(){
+				var mb_emailvalOld = f.mb_email.value;
+				mb_emailval = trim(mb_emailvalOld);
+				if(mb_emailval.length == 0){
+					alert("정신차려~ 뭐안쓰냐고");
+					f.mb_email.value = "";
+					f.mb_email.focus();
+					return false;
+				}else{
+					pass = checkByteLen(mb_emailvalOld, 30);
+					if(!pass){
+						alert("너무 길잖아~");
+						f.mb_email.focus();
+						return false;
+					}
+				}
+				var mb_passwordvalOld = f.mb_password.value;
+				mb_passwordval = trim(mb_passwordvalOld);
+				
+				if(mb_passwordval.length == 0){
+					alert("정신차려~ 비번안쓰냐고");
+					f.mb_password.value = "";
+					f.mb_password.focus();
+					return false;
+				}else{
+					pass = checkByteLen(mb_passwordvalOld, 20);
+					if(!pass){
+						alert("너무길잖아~");
+						f.mb_password.focus();
+						return false;
+					}
+				}
+		
+				f.submit();
+			}
+		
+		    function checkByteLen(str, size){
+		        var byteLen = getByteLen(str);
+				if(byteLen <= size){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			function getByteLen(str){
+			   return str.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
+		    }
+			
+			function enterCheck(elm){
+				if(event.keyCode == 13){
+					if(elm == f.mb_email){
+						f.mb_password.focus();
+					}else{
+						check();
+					}
+				}
+			}
+		</script>
+	</head>
+
+	<body onload="document.f.mb_email.focus()">
+	<center>
+	   <h1>
+			보미닷컴
+	   </h1>
+	   <form name="f" action="login" method="post">
+		   <table border="1" width="300" height="200">
+			  <tr>
+				 <td width="30%" colspan="2" align="center"><h2>로그인</h2></td>
+			  </tr>
+			  <tr>
+				 <th width="30%">이메일</th>
+				 <td><input name="mb_email" align="center" size="20" onkeydown="enterCheck(this)"></td>
+			  </tr>
+			  <tr>
+				 <th width="30%">비번</th>
+				 <td><input name="mb_password" type="password" size="20" align="center" onkeydown="enterCheck(this)"></td>
+			  </tr>
+			  <tr>
+				 <td colspan="2" align="center">
+					 <input type="button" value="전송" onclick="check()"/>
+					 <input type="reset" value="취소"/>
+				 </td> 
+			  </tr>
+		   </table>
+	   </form>
+	</center>
+	</body>
+</html>
