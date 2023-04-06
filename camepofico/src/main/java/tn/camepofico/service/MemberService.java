@@ -9,4 +9,5 @@ public interface MemberService {
     List<Member> list();
     void update(Member member);
     Member findBySeq(Long mb_seq);
+    void delete(Long mb_seq);
 }

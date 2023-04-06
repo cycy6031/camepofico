@@ -50,7 +50,7 @@ public class MemberController {
         System.out.println(member.getMb_password());
         System.out.println(member.getMb_name());
         memberService.update(member);
-        return "list";
+        return "redirect:list";
     }
 
     @GetMapping("update")
@@ -68,6 +68,8 @@ public class MemberController {
     }
     @GetMapping("delete")
     public String delete(Long mb_seq){
-        return "list";
+        System.out.println("seq: " + mb_seq);
+        memberService.delete(mb_seq);
+        return "redirect:list";
     }
 }
