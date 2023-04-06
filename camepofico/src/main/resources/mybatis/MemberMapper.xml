@@ -26,4 +26,7 @@
     <update id="update" parameterType="Member">
         update MEMBER set MB_NAME=#{mb_name}, MB_PASSWORD=#{mb_password}, MB_UDATE=SYSDATE WHERE MB_SEQ=#{mb_seq}
     </update>
+    <delete id="delete">
+        delete from MEMBER where MB_SEQ=#{mb_seq}
+    </delete>
 </mapper>
