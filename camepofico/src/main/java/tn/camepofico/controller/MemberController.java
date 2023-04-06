@@ -42,7 +42,7 @@ public class MemberController {
         return "list";
     }
 
-    @PostMapping("update")
+    @PostMapping("update") //관리자용 수정
     public String updateOk(Long mb_seq, Member member){
         System.out.println(mb_seq);
         member.setMb_seq(mb_seq);
@@ -52,14 +52,14 @@ public class MemberController {
         memberService.update(member);
         return "redirect:list";
     }
-
-    @GetMapping("update")
+    @GetMapping("update") //관리자용 수정
     public String update(Long mb_seq, Model model){
         System.out.println("``````````````````````" + mb_seq);
         Member member = memberService.findBySeq(mb_seq);
         model.addAttribute("member", member);
         return "join";
     }
+
     @GetMapping("edit")
     public String update(Model model,HttpSession session){
         Member login_ses= (Member)session.getAttribute("loginMember");
