@@ -44,11 +44,7 @@ public class MemberController {
 
     @PostMapping("update") //관리자용 수정
     public String updateOk(Long mb_seq, Member member){
-        System.out.println(mb_seq);
         member.setMb_seq(mb_seq);
-        System.out.println(member.getMb_email());
-        System.out.println(member.getMb_password());
-        System.out.println(member.getMb_name());
         memberService.update(member);
         return "redirect:list";
     }
@@ -65,6 +61,15 @@ public class MemberController {
         Member login_ses= (Member)session.getAttribute("loginMember");
         model.addAttribute("member", login_ses);
         return "edit";
+    }
+    @PostMapping("edit")
+    public String update(HttpSession session,Member member){
+        Member login_ses= (Member)session.getAttribute("loginMember");
+        member.setMb_seq(login_ses.getMb_seq());
+        System.out.println(member);
+        memberService.update(member);
+        session.setAttribute("loginMember",login_ses);
+        return "redirect:/";
     }
     @GetMapping("delete")
     public String delete(Long mb_seq){
