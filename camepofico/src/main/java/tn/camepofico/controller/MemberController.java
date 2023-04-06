@@ -68,6 +68,7 @@ public class MemberController {
         member.setMb_seq(login_ses.getMb_seq());
         System.out.println(member);
         memberService.update(member);
+        session.setAttribute("loginMember",login_ses);
         return "redirect:/";
     }
     @GetMapping("delete")
