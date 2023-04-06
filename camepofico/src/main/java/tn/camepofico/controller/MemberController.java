@@ -50,7 +50,7 @@ public class MemberController {
         System.out.println(member.getMb_password());
         System.out.println(member.getMb_name());
         memberService.update(member);
-        return "list";
+        return "redirect:list";
     }
 
     @GetMapping("update")
@@ -66,8 +66,18 @@ public class MemberController {
         model.addAttribute("member", login_ses);
         return "edit";
     }
+    @PostMapping("edit")
+    public String update(HttpSession session,Member member){
+        Member login_ses= (Member)session.getAttribute("loginMember");
+        member.setMb_seq(login_ses.getMb_seq());
+        System.out.println(member);
+        memberService.update(member);
+        return "redirect:/";
+    }
     @GetMapping("delete")
     public String delete(Long mb_seq){
-        return "list";
+        System.out.println("seq: " + mb_seq);
+        memberService.delete(mb_seq);
+        return "redirect:list";
     }
 }

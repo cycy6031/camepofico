@@ -30,4 +30,8 @@ public class MemberServiceImpl implements MemberService{
     public Member findBySeq(Long mb_seq){
         return memberMapper.findBySeq(mb_seq);
     }
+    @Override
+    public void delete(Long mb_seq){
+        memberMapper.delete(mb_seq);
+    }
 }
