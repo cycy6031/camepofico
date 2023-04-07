@@ -12,5 +12,8 @@ public class JhPostServiceImpl implements  JhPostService{
     @Autowired
     private JhPostMapper postMapper;
     @Override
-    public List<Post> listAll(){ return null;}
+    public List<Post> listAll(){
+        List<Post> list =  postMapper.listAll();
+        return list;
+    }
 }

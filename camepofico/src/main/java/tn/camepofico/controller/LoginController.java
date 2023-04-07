@@ -23,7 +23,7 @@ public class LoginController {
 	LoginService loginService;
 	@GetMapping("login")
 	public String login() {
-	    return "login";
+	    return "th/login";
 	}
 	@PostMapping("login")
 	public void login_Ok(Member member, HttpServletResponse response, HttpSession session) throws IOException {

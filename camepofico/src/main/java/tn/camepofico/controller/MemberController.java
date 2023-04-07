@@ -22,7 +22,7 @@ public class MemberController {
 
     @GetMapping("join")
     public String join(){
-        return "join";
+        return "th/join";
     }
     @PostMapping("join")
     public String write(Member member){
@@ -39,7 +39,7 @@ public class MemberController {
             model.addAttribute("list",list);
 
         }
-        return "list";
+        return "th/list";
     }
 
     @PostMapping("update") //관리자용 수정
@@ -53,14 +53,14 @@ public class MemberController {
         System.out.println("``````````````````````" + mb_seq);
         Member member = memberService.findBySeq(mb_seq);
         model.addAttribute("member", member);
-        return "join";
+        return "th/join";
     }
 
     @GetMapping("edit")
     public String update(Model model,HttpSession session){
         Member login_ses= (Member)session.getAttribute("loginMember");
         model.addAttribute("member", login_ses);
-        return "edit";
+        return "th/edit";
     }
     @PostMapping("edit")
     public String update(HttpSession session,Member member){
