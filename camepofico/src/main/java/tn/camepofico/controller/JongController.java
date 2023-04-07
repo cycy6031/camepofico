@@ -39,5 +39,22 @@ public class JongController {
 		jongService.insertCat(pocategory);
 		ScriptUtil.alertAndMovePage(response,"카테가 추가됨!","/jong/cate");
 	}
+	@GetMapping("catUpdate")
+	public String catUpdate(Long pc_seq,Model model) {
+	    Pocategory pocategory = jongService.findBySeq(pc_seq);
+		model.addAttribute("cat",pocategory);
+		return "catUpdate";
+	}
+	@PostMapping("catUpdate")
+	public void catUpdate(Long pc_seq,Pocategory pocategory,HttpServletResponse response)throws IOException{
+		pocategory.setPc_seq(pc_seq);
+		jongService.update(pocategory);
+		ScriptUtil.alertAndMovePage(response,"카테가 수정됨!","/jong/cate");
+	}
+	@GetMapping("catDelete")
+	public void catDelete(Long pc_seq,HttpServletResponse response)throws IOException{
+		jongService.delete(pc_seq);
+		ScriptUtil.alertAndMovePage(response,"카테가 삭제됨!","/jong/cate");
+	}
 }
 
