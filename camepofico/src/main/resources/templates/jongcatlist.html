@@ -27,10 +27,14 @@
         <tr>
             <th>번호</th>
             <th>카테고리</th>
+            <th>수정</th>
+            <th>삭제</th>
         </tr>
         <tr th:each="category: ${list}">
             <td align='center' th:text="${category.pc_seq}"></td>
             <td th:text="${category.pc_name}"></td>
+            <td align='center'><a th:href="@{|/jong/catUpdate?pc_seq=${category.pc_seq}|}">수정</a></td>
+            <td align='center'><a th:href="@{|/jong/catDelete?pc_seq=${category.pc_seq}|}">삭제</a></td>
         </tr>
 
     </table>

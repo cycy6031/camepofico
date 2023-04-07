@@ -16,8 +16,14 @@
         </selectKey>
         insert into Pocategory values (#{pc_seq},#{pc_name})
     </insert>
+    <select id="findBySeq" parameterType="Long" resultType="Pocategory">
+        select * from Pocategory where PC_SEQ= #{pc_seq}
+    </select>
     <update id="update" parameterType="Pocategory">
-        update set Pocategory PC_NAME = #{pc_name} where PC_SEQ= #{pc_seq}
+        update Pocategory set PC_NAME = #{pc_name} where PC_SEQ= #{pc_seq}
     </update>
+    <delete id="delete">
+        delete from Pocategory where PC_SEQ= #{pc_seq}
+    </delete>
 
 </mapper>

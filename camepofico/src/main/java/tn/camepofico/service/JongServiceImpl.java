@@ -23,4 +23,20 @@ public class JongServiceImpl implements JongService{
 	public void insertCat(Pocategory pocategory) {
 		jongMapper.insertCat(pocategory);
 	}
+
+	@Override
+	public Pocategory findBySeq(Long pc_seq) {
+		Pocategory pocategory = jongMapper.findBySeq(pc_seq);
+		return pocategory;
+	}
+
+	@Override
+	public void update(Pocategory pocategory) {
+		jongMapper.update(pocategory);
+	}
+
+	@Override
+	public void delete(Long pc_seq) {
+		jongMapper.delete(pc_seq);
+	}
 }
