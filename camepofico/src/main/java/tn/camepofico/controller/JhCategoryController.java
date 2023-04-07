@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("jhcategory/")
-public class JHCategoryController{
+public class JhCategoryController {
     @Autowired
     private JhCategoryService categoryService;
 
@@ -21,12 +21,12 @@ public class JHCategoryController{
     public String list(Model model){
         List<Pocategory> list = categoryService.list();
         model.addAttribute("list", list);
-        return "jhlist";
+        return "jhCatList";
     }
 
     @GetMapping("add")
     public String addCat(){
-        return "addJhCat";
+        return "JhCatAdd";
     }
     @PostMapping("add")
     public String addCatOk(Pocategory pocategory){
@@ -38,7 +38,7 @@ public class JHCategoryController{
     public String update(Long pc_seq, Model model){
         Pocategory pocategory = categoryService.findBySeq(pc_seq);
         model.addAttribute("category", pocategory);
-        return "addJhCat";
+        return "JhCatAdd";
     }
 
     @PostMapping("update")
