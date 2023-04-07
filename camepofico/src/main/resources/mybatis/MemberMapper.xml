@@ -29,4 +29,5 @@
     <delete id="delete">
         delete from MEMBER where MB_SEQ=#{mb_seq}
     </delete>
+
 </mapper>
