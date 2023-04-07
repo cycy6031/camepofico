@@ -27,7 +27,7 @@ public class MemberController {
     @PostMapping("join")
     public String write(Member member){
         memberService.insert(member);
-        return "main";
+        return "redirect:/";
     }
     @GetMapping("list")
     public String list(Model model, HttpSession session, HttpServletResponse response) throws IOException {
@@ -71,7 +71,7 @@ public class MemberController {
         session.setAttribute("loginMember",login_ses);
         return "redirect:/";
     }
-    @GetMapping("delete")
+    @GetMapping("delete") // 관리자용삭제
     public String delete(Long mb_seq){
         System.out.println("seq: " + mb_seq);
         memberService.delete(mb_seq);
