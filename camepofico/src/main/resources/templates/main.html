@@ -9,12 +9,17 @@
 	<a th:if="${session.loginMember == null}" href="login">로그인</a>
 	<a th:if="${session.loginMember != null}" href="logout">로그아웃</a>
 
-	<a href="/post/listJson.do">Json리스트</a>
+	<a href="post/listJson.do">Json리스트</a>
 	<a th:if="${session.loginMember == null}" href="member/join">회원가입</a>
 	<a th:if="${session.loginMember != null}" href="member/edit">정보수정</a>
-	<a href="/member/list">주소록</a></br>
+	<a href="/member/list">주소록</a>
+	<a th:if="${session.loginMember != null}" href="member/deleteMe">회원삭제</a>
+	</br>
 
 	<a href="/jhcategory/list">JH카테고리목록</a>
 	<a href="/jhboard/list">JH게시판</a>
+
+	<br>
+	<a href="jong/cate">종스카테고리</a>
 </body>
 </html>

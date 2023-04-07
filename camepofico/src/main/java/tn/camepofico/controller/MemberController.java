@@ -77,4 +77,12 @@ public class MemberController {
         memberService.delete(mb_seq);
         return "redirect:list";
     }
+    @GetMapping("deleteMe")
+    public String deleteMe(HttpSession session, Long mb_seq){
+        Member login_ses= (Member)session.getAttribute("loginMember");
+        mb_seq = login_ses.getMb_seq();
+        memberService.delete(mb_seq);
+        session.invalidate();
+        return "redirect:/";
+    }
 }

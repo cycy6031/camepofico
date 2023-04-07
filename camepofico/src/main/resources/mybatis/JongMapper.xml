@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tn.camepofico.mapper.JongMapper">
+    <resultMap id="category" type="Pocategory">
+        <id property="pc_seq" column="PC_SEQ"/>
+        <id property="pc_name" column="PC_NAME"/>
+    </resultMap>
+    <select id="list" resultMap="category">
+        select * from Pocategory
+    </select>
+    <insert id="insertCat" parameterType="Pocategory">
+        <selectKey resultType="long" keyProperty="pc_seq" order="BEFORE">
+            select POCATEGORY_SEQ.nextval from dual
+        </selectKey>
+        insert into Pocategory values (#{pc_seq},#{pc_name})
+    </insert>
+    <update id="update" parameterType="Pocategory">
+        update set Pocategory PC_NAME = #{pc_name} where PC_SEQ= #{pc_seq}
+    </update>
+
+</mapper>
