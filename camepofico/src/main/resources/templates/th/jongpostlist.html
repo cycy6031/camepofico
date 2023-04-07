@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <style>
+			table, th, td {
+			   border: 1px solid black;
+			   border-collapse: collapse;
+			}
+			th, td {
+			   padding: 5px;
+			}
+			a { text-decoration:none }
+		</style>
+</head>
+
+<body style="text-align:center">
+<center>
+    <h1>
+        보미닷컴 게시글
+    </h1>
+    <a href='/member/join'>게시글추가</a>&nbsp;&nbsp;&nbsp;
+    <a href='/'>메인</a><br/>
+    <table border='1' cellpadding='7' cellspacing='2' width='50%'>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성일</th>
+            <th>자까</th>
+            <th>카테고리</th>
+        </tr>
+        <tr th:each="post: ${post}">
+            <td align='center' th:text="${post.ps_seq}"></td>
+            <td th:text="${post.ps_subject}"></td>
+            <td th:text="${post.ps_content}"></td>
+            <td th:text="${#dates.format(post.ps_rdate, 'yy.MM.dd  a hh:mm')}"></td>
+            <td th:text="${post.Member.mb_name}"></td>
+            <td th:text="박아"></td>
+        </tr>
+    </table>
+</center>
+</body>
+</body>
+</html>

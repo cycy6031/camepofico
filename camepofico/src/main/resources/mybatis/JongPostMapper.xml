@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tn.camepofico.mapper.JongPostMapper">
+    <resultMap id="member" type="Member">
+        <id property="mb_seq" column="MB_SEQ"/>
+        <id property="mb_name" column="MB_NAME"/>
+        <id property="mb_email" column="MB_EMAIL"/>
+        <id property="mb_password" column="MB_PASSWORD"/>
+        <id property="mb_rdate" column="MB_RDATE"/>
+        <id property="mb_udate" column="MB_UDATE"/>
+    </resultMap>
+    <resultMap id="category" type="Pocategory">
+        <id property="pc_seq" column="PC_SEQ"/>
+        <id property="pc_name" column="PC_NAME"/>
+    </resultMap>
+    <resultMap id="post" type="Post">
+        <id property="ps_seq" column="PS_SEQ"/>
+        <id property="ps_subject" column="PS_SUBJECT"/>
+        <id property="ps_content" column="PS_CONTENT"/>
+        <id property="ps_rdate" column="PS_RDATE"/>
+        <id property="ps_udate" column="PS_UDATE"/>
+        <id property="file_count" column="FILE_COUNT"/>
+        <id property="comment_count" column="COMMENT_COUNT"/>
+        <collection property="member" resultMap="member"/>
+        <collection property="pocategory" resultMap="category"/>
+    </resultMap>
+    <select id="list" resultMap="post">
+        select * from POST p join MEMBER m on p.ps_mb_seq = m.mb_seq
+    </select>
+</mapper>

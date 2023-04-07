@@ -32,7 +32,7 @@ public class JongController {
 	}
 	@GetMapping("catwrite")
 	public String catwrite(){
-		return "catwrite";
+		return "th/catwrite";
 	}
 	@PostMapping("catwrite")
 	public void catwrite(Pocategory pocategory, HttpServletResponse response) throws IOException{
