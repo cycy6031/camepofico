@@ -26,15 +26,19 @@
     <table border='1' cellpadding='7' cellspacing='2' width='50%'>
         <tr>
             <th>번호</th>
-            <th>이름</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>카테고리</th>
             <th>수정</th>
             <th>삭제</th>
         </tr>
-        <tr th:each="category: ${list}">
-            <td align='center' th:text="${category.pc_seq}"></td>
-            <td th:text="${category.pc_name}"></td>
-            <td align='center'><a th:href="@{|/jhcategory/update?pc_seq=${category.pc_seq}|}">수정</a></td>
-            <td align='center'><a th:href="@{|/jhcategory/delete?pc_seq=${category.pc_seq}|}">삭제</a></td>
+        <tr th:each="post: ${list}">
+            <td align='center' th:text="${post.ps_seq}"></td>
+            <td th:text="${post.ps_subject}"></td>
+            <td th:text="${post.member.mb_name}"></td>
+            <td th:text="${post.pocategory.pc_name}"></td>
+            <td align='center'><a th:href="@{|/jhcategory/update?pc_seq=${post.ps_seq}|}">수정</a></td>
+            <td align='center'><a th:href="@{|/jhcategory/delete?pc_seq=${post.ps_seq}|}">삭제</a></td>
         </tr>
     </table>
 </center>

@@ -27,7 +27,7 @@
         <collection property="pocategory" resultMap="pocategory"/>
     </resultMap>
     <select id="listAll" resultMap="post">
-        select * from POST
+        select * from (select * from POST p join Member m on p.PS_MB_SEQ=m.MB_SEQ) p2 join POCATEGORY pc on p2.PS_PC_SEQ=pc.PC_SEQ
     </select>
 <!--    <insert id="insert" parameterType="Post">-->
 <!--        <selectKey resultType="long" keyProperty="pc_seq" order="BEFORE">-->
