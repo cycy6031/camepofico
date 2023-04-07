@@ -1,0 +1,12 @@
+package tn.camepofico.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+import tn.camepofico.domain.Pocategory;
+import tn.camepofico.domain.Post;
+
+import java.util.List;
+
+@Mapper
+public interface JongPostMapper {
+    List<Post> list();
+}

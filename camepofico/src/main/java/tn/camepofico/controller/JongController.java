@@ -28,11 +28,11 @@ public class JongController {
 		List<Pocategory> list = jongService.list();
 		System.out.println(list);
 		model.addAttribute("list", list);
-		return "jongcatlist";
+		return "th/jongcatlist";
 	}
 	@GetMapping("catwrite")
 	public String catwrite(){
-		return "catwrite";
+		return "th/catwrite";
 	}
 	@PostMapping("catwrite")
 	public void catwrite(Pocategory pocategory, HttpServletResponse response) throws IOException{
@@ -43,7 +43,7 @@ public class JongController {
 	public String catUpdate(Long pc_seq,Model model) {
 	    Pocategory pocategory = jongService.findBySeq(pc_seq);
 		model.addAttribute("cat",pocategory);
-		return "catUpdate";
+		return "th/catUpdate";
 	}
 	@PostMapping("catUpdate")
 	public void catUpdate(Long pc_seq,Pocategory pocategory,HttpServletResponse response)throws IOException{

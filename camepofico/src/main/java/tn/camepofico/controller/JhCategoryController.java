@@ -21,7 +21,7 @@ public class JhCategoryController {
     public String list(Model model){
         List<Pocategory> list = categoryService.list();
         model.addAttribute("list", list);
-        return "jhCatList";
+        return "th/jhCatList";
     }
 
     @GetMapping("add")
@@ -38,7 +38,7 @@ public class JhCategoryController {
     public String update(Long pc_seq, Model model){
         Pocategory pocategory = categoryService.findBySeq(pc_seq);
         model.addAttribute("category", pocategory);
-        return "JhCatAdd";
+        return "th/JhCatAdd";
     }
 
     @PostMapping("update")

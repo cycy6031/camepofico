@@ -11,6 +11,6 @@ public class MainController {
 	@GetMapping("/")
 	public String main(HttpSession session){
 		Member login_ses= (Member)session.getAttribute("loginMember");
-		return "main";
+		return "th/main";
 	}
 }
