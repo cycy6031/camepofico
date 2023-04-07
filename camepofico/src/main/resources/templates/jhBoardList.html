@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    <style>
+			table, th, td {
+			   border: 1px solid black;
+			   border-collapse: collapse;
+			}
+			th, td {
+			   padding: 5px;
+			}
+			a { text-decoration:none }
+		</style>
+</head>
+
+<body style="text-align:center">
+<center>
+    <h1>
+        보미닷컴 JH게시판
+    </h1>
+    <a href='/jhcategory/add'>카테고리추가</a>&nbsp;&nbsp;&nbsp;
+    <a href='/'>메인</a><br/>
+    <table border='1' cellpadding='7' cellspacing='2' width='50%'>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        <tr th:each="category: ${list}">
+            <td align='center' th:text="${category.pc_seq}"></td>
+            <td th:text="${category.pc_name}"></td>
+            <td align='center'><a th:href="@{|/jhcategory/update?pc_seq=${category.pc_seq}|}">수정</a></td>
+            <td align='center'><a th:href="@{|/jhcategory/delete?pc_seq=${category.pc_seq}|}">삭제</a></td>
+        </tr>
+    </table>
+</center>
+</body>
+</body>
+</html>
