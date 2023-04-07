@@ -27,7 +27,7 @@ public class MemberController {
     @PostMapping("join")
     public String write(Member member){
         memberService.insert(member);
-        return "main";
+        return "redirect:/";
     }
     @GetMapping("list")
     public String list(Model model, HttpSession session, HttpServletResponse response) throws IOException {
