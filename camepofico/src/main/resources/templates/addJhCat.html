@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bomi.com AddCategory</title>
+	<style>
+			table, th, td {
+			   border: 1px solid black;
+			   border-collapse: collapse;
+			}
+			th, td {
+			   padding: 5px;
+			}
+			a { text-decoration:none }
+		</style>
+	<script src="/js/trim.js"></script>
+	<script language="javascript">
+		    function check(){
+				var namevalOld = f.pc_name.value;
+				nameval = trim(namevalOld);
+				if(nameval.length == 0){
+					alert("이름을 넣어주세요");
+					f.pc_name.value = "";
+					f.pc_name.focus();
+					return false;
+				}else{
+					pass = checkByteLen(namevalOld, 30);
+					if(!pass){
+						alert("이름이 너무 길어요");
+						f.pc_name.focus();
+						return false;
+					}
+				}
+				f.submit();
+			}
+
+		    function checkByteLen(str, size){
+		        var byteLen = getByteLen(str);
+				if(byteLen <= size){
+					return true;
+				}else{
+					return false;
+				}
+			}
+			function getByteLen(str){
+			   return str.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
+		    }
+		</script>
+</head>
+
+<body onload="document.f.pc_name.focus()">
+<center>
+	<h1>
+		보미닷컴
+	</h1>
+	<form name="f" th:unless="${category}" th:action="@{/jhcategory/add}" method="post">
+		<table border="1" width="300" height="200">
+			<tr>
+				<td width="30%" colspan="2" align="center"><h2>카테고리추가</h2></td>
+			</tr>
+			<tr>
+				<th width="30%">카테고리명</th>
+				<td><input name="pc_name" align="center" size="20" onkeydown="enterCheck(this)"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="전송" onclick="check()"/>
+					<input type="reset" value="취소"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<form name="f" th:if="${category}" th:action="@{|/jhcategory/update?pc_seq=${category.pc_seq}|}" method="post">
+		<table border="1" width="300" height="200">
+			<tr>
+				<td width="30%" colspan="2" align="center"><h2>카테고리수정</h2></td>
+			</tr>
+			<tr>
+				<th width="30%">카테고리명</th>
+				<td><input name="pc_name" align="center" th:value="${category.pc_name}" size="20" onkeydown="enterCheck(this)"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="button" value="수정" onclick="check()"/>
+					<input type="reset" value="취소"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</center>
+</body>
+</html>
