@@ -21,8 +21,14 @@
     <h1>
         보미닷컴 JH게시판
     </h1>
-    <a href='/jhcategory/add'>카테고리추가</a>&nbsp;&nbsp;&nbsp;
-    <a href='/'>메인</a><br/>
+    <a href='/jhcategory/list'>카테고리관리</a>&nbsp;&nbsp;
+    <a href='/'>메인</a><br/>&nbsp;&nbsp;
+    <a href='/jhpost/write'>새글작성</a></br>
+    카테고리별 게시판:&nbsp;
+    <th:block th:each="cat : ${pcList}">
+        <a th:href="@{|/jhpost/list?ca=${cat.pc_name}|}" th:text="${cat.pc_name}"></a>
+    </th:block></br>
+
     <table border='1' cellpadding='7' cellspacing='2' width='50%'>
         <tr>
             <th>번호</th>
@@ -32,13 +38,16 @@
             <th>수정</th>
             <th>삭제</th>
         </tr>
-        <tr th:each="post: ${list}">
+        <TR th:if=${list.isEmpty()}>
+            <TD align="center" colspan="6"> 데이터가 하나도 없음 </TD>
+        </tr>
+        <tr th:unless="${list.isEmpty()}" th:each="post: ${list}">
             <td align='center' th:text="${post.ps_seq}"></td>
             <td th:text="${post.ps_subject}"></td>
             <td th:text="${post.member.mb_name}"></td>
-            <td th:text="${post.pocategory.pc_name}"></td>
-            <td align='center'><a th:href="@{|/jhcategory/update?pc_seq=${post.ps_seq}|}">수정</a></td>
-            <td align='center'><a th:href="@{|/jhcategory/delete?pc_seq=${post.ps_seq}|}">삭제</a></td>
+            <td align='center'><a th:href="@{|/jhpost/list?ca=${post.pocategory.pc_name}|}" th:text="${post.pocategory.pc_name}"></a></td>
+            <td align='center'><a th:href="@{|/jhcategory/update?ps_seq=${post.ps_seq}|}">수정</a></td>
+            <td align='center'><a th:href="@{|/jhcategory/delete?ps_seq=${post.ps_seq}|}">삭제</a></td>
         </tr>
     </table>
 </center>
