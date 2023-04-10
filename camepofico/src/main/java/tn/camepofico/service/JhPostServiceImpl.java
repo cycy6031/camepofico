@@ -16,4 +16,9 @@ public class JhPostServiceImpl implements  JhPostService{
         List<Post> list =  postMapper.listAll();
         return list;
     }
+    @Override
+    public List<Post> listcate(String category){
+        List<Post> list = postMapper.listcate(category);
+        return list;
+    }
 }

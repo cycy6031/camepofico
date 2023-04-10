@@ -29,12 +29,15 @@
     <select id="listAll" resultMap="post">
         select * from (select * from POST p join Member m on p.PS_MB_SEQ=m.MB_SEQ) p2 join POCATEGORY pc on p2.PS_PC_SEQ=pc.PC_SEQ
     </select>
-<!--    <insert id="insert" parameterType="Post">-->
-<!--        <selectKey resultType="long" keyProperty="pc_seq" order="BEFORE">-->
-<!--            select POST_SEQ.nextval from dual-->
-<!--        </selectKey>-->
-<!--        insert into POST values(#{ps_seq},#{ps_subject},#{ps_content},SYSDATE, SYSDATE, #{member.mb_seq},#{pocategory.pc_seq})-->
-<!--    </insert>-->
+    <select id="listcate" resultMap="post" parameterType="String">
+        select * from (select * from Post p, Member m, Pocategory pc where p.PS_MB_SEQ=m.MB_SEQ and p.PS_PC_SEQ=pc.PC_SEQ) where pc_name=#{category}
+    </select>
+    <insert id="insert" parameterType="Post">
+        <selectKey resultType="long" keyProperty="ps_seq" order="BEFORE">
+            select POST_SEQ.nextval from dual
+        </selectKey>
+        insert into POST values(#{ps_seq},#{ps_subject},#{ps_content},SYSDATE, SYSDATE, #{member.mb_seq},#{pocategory.pc_seq})
+    </insert>
 <!--    <select id="list" resultMap="post">-->
 <!--        select * from POST-->
 <!--    </select>-->

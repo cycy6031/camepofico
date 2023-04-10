@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	a{text-decoration:none}
+</style>
+<meta charset="utf-8">
+<center>
+<!--	<th:block th:include="loginCheck"></th:block>-->
+	<font color='gray' size='4' face='휴먼편지체'>
+	<hr width='600' size='2' color='gray' noshade>
+	<h3>Spring Board</h3>
+	<font color='gray' size='4' face='휴먼편지체'>
+	<a href='write.do'>글쓰기</a>
+	</font>
+	<hr width='600' size='2' color='gray' noshade>
+	</font>
+	
+	<table border='2' width='600' align='center' noshade>
+	<tr>
+		<td width='20%' align='center'>No</td>
+		<td th:text="${post.psSeq}">17</td>
+	</tr>
+	<tr>
+		<td width='20%' align='center'>E-mail</td>
+		<td th:text="${post.member.mbEmail}">가</td>
+	</tr>
+	<tr>
+		<td align='center'>Category</td>
+		<td th:text="${post.pocategory.pcName}">나</td>
+	</tr>
+	<tr>
+		<td align='center'>Subject</td>
+		<td th:text="${post.psSubject}">다</td>
+	</tr>
+	<tr>
+		<td align='center'>Contents</td>
+		<td th:text="${post.psContent}">라</td>
+	</tr>
+<!--	<tr>-->
+<!--		<td align='center'>File(<span th:text="${post.fileCount}">0</span>)</td>-->
+<!--		<td>-->
+<!--			<div th:each="file : ${fileList}">-->
+<!--				<a th:href="|/file/attach/${file.fuSeq}|" th:text="${file.fuOrgnm}"></a>-->
+<!--			</div>-->
+<!--		</td>-->
+<!--	</tr>-->
+	<tr>
+		<td align='center'>Comment(<span th:text="${post.commentCount}">0</span>)</td>
+		<td>
+			<form action="commentInsert.do" method="post">
+				<input type="hidden" name="cmPsSeq" th:value="${post.psSeq}">
+				<input type="hidden" name="member.mbSeq" th:value="${post.member.mbSeq}">
+				<textarea name="cmContent"></textarea><button>댓글</button>
+			</form>
+			<div th:each="comment : ${commentList}">
+				<th:block th:if="${comment.cmSeq == comment.cmCmSeq}">
+					<span th:text="${comment.cmContent}"></span>
+					<form action="commentInsert.do" method="post">
+						<input type="hidden" name="cmPsSeq" th:value="${post.psSeq}">
+						<input type="hidden" name="cmCmSeq" th:value="${comment.cmSeq}">
+						<input type="hidden" name="member.mbSeq" th:value="${post.member.mbSeq}">
+						<textarea name="cmContent"></textarea><button>대댓글</button>
+					</form>
+				</th:block>
+				<th:block th:if="${comment.cmSeq != comment.cmCmSeq}">
+					re:<span th:text="${comment.cmContent}"></span>
+				</th:block>
+			</div>
+		</td>
+	</tr>
+	</table>
+	
+	<hr width='600' size='2' color='gray' noshade>
+	<font color='gray' size='4' face='휴먼편지체'>
+	<a th:href='@{update.do?(psSeq=${post.psSeq})}'>수정</a>
+	 &nbsp;&nbsp;| 
+	<a th:href='@{delete.do?(psSeq=${post.psSeq})}'>삭제</a>
+	 &nbsp;&nbsp;| 
+	<a href='list.do'>목록</a>
+	</font>
+	<hr width='600' size='2' color='gray' noshade>
+</center>
